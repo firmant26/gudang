@@ -1,8 +1,8 @@
-import 'classBarangMudahKadaluarsa.dart';
-import 'classBarangTidakKadaluarsa.dart';
-import 'doubleLinkedList.dart';
-import 'stack.dart';
-import 'queue.dart';
+import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
+import 'package:tugas_1/classBarangTidakKadaluarsa.dart';
+import 'package:tugas_1/doubleLinkedList.dart';
+import 'package:tugas_1/stack.dart';
+import 'package:tugas_1/queue.dart';
 
 void main() {
   BarangMudahKadaluarsa mieInstan = BarangMudahKadaluarsa(
