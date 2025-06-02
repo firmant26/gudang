@@ -3,7 +3,6 @@ import 'package:tugas_1/classBarangTidakKadaluarsa.dart';
 import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/stack.dart';
 import 'package:tugas_1/queue.dart';
-
 void main() {
   BarangMudahKadaluarsa mieInstan = BarangMudahKadaluarsa(
       kodeBarang: "A35",
