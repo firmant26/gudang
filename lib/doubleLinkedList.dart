@@ -22,7 +22,7 @@ class DoubleLinkedListBarang {
     }
     return false;
   }
-  
+
   void tambahBelakang(Barang barang) {
     NodeBarang node = NodeBarang(barang);
     if (tail == null) {
@@ -55,7 +55,8 @@ class DoubleLinkedListBarang {
     while (current != null) {
       print("Nama         : ${current.data.namaBarang}");
       print("Kode         : ${current.data.kodeBarang}");
-      print("Jumlah       : ${current.data.jumlahBarangDidalam} ${current.data.satuan}");
+      print(
+          "Jumlah       : ${current.data.jumlahBarangDidalam} ${current.data.satuan}");
       print("Tanggal Beli : ${current.data.tanggalBeli}");
       print("Harga Beli   : ${current.data.hargaBeli}");
       print("Harga Jual   : ${current.data.hargaJual}");
@@ -80,29 +81,23 @@ class DoubleLinkedListBarang {
     }
   }
 
-  void hapusBarang(String kodeBarang) {
-    NodeBarang? current = head;
-    while (current != null) {
-      if (current.data.kodeBarang == kodeBarang) {
-        if (current.prev != null) {
-          current.prev!.next = current.next;
-          print("Barang dengan kode '$kodeBarang' telah dihapus.");
-        } else {
-          head = current.next; // Jika yang dihapus adalah head
-          print("Barang dengan kode '$kodeBarang' telah dihapus.");
-        }
-        if (current.next != null) {
-          current.next!.prev = current.prev;
-          print("Barang dengan kode '$kodeBarang' telah dihapus.");
-        } else {
-          tail = current.prev; // Jika yang dihapus adalah tail
-          print("Barang dengan kode '$kodeBarang' telah dihapus.");
-        }
-        return;
+  void hapusBarang(String kodeBarang, DoubleLinkedListBarang barang) {
+    NodeBarang? cari = barang.cariBarang(kodeBarang);
+    if (cari == null) {
+      print("Barang dengan kode '$kodeBarang' tidak ditemukan.");
+      return;
+    } else {
+      if (cari.prev != null) {
+        cari.prev!.next = cari.next;
+      } else {
+        head = cari.next; // Jika yang dihapus adalah head
       }
-      current = current.next;
+      if (cari.next != null) {
+        cari.next!.prev = cari.prev;
+      } else {
+        tail = cari.prev; // Jika yang dihapus adalah tail
+      }
+      print("Barang dengan kode '$kodeBarang' berhasil dihapus.");
     }
-    print("Barang dengan kode '$kodeBarang' tidak ditemukan.");
   }
-
 }

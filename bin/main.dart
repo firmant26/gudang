@@ -5,6 +5,8 @@ import 'package:tugas_1/stack.dart';
 
 import 'tambahBarang.dart';
 import 'editBarang.dart';
+import 'cariBarang.dart';
+import 'hapusBarang.dart';
 import 'jualBarang.dart';
 
 void main() {
@@ -46,8 +48,11 @@ void main() {
         gudang.lihatBarang();
         break;
       case 4:
+        cariBarang(rak1, rak2);
         break;
       case 5:
+        hapusBarang(rak1, rak2, gudang);
+        gudang.lihatBarang();
         break;
       case 6:
         jualBarang(gudang, stack, queque);
