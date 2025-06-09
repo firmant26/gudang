@@ -17,6 +17,7 @@ analyzer:
     unnecessary_type_check: ignore
     unnecessary_null_comparison: ignore
     file_names: ignore
+    unused_import: ignore
 
 # Uncomment the following section to specify additional rules.
 

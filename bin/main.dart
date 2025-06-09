@@ -4,6 +4,8 @@ import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
 import 'tambahBarang.dart';
+import 'editBarang.dart';
+import 'jualBarang.dart';
 
 void main() {
   /**
@@ -17,6 +19,8 @@ void main() {
   DoubleLinkedListBarang gudang = DoubleLinkedListBarang();
   Stack stack = Stack(100);
   Queque queque = Queque(100);
+  var rak1 = <String, Stack>{};
+  var rak2 = <String, Queque>{};
 
   bool proses = true;
   while (proses) {
@@ -28,22 +32,25 @@ void main() {
     print("5. Hapus Barang");
     print("6. Jual Barang");
     print("7. Keluar");
-    stdout.write("Pilih salah satu menu! ");
+    stdout.write("Pilih salah satu menu = ");
     int pilihan = int.parse(stdin.readLineSync()!);
 
     switch (pilihan) {
       case 1:
-        tambahBarang(gudang, queque, stack);
+        tambahBarang(gudang, queque, stack, rak1, rak2);
         break;
       case 2:
+        editBarang(gudang, stack, queque, rak1, rak2);
         break;
       case 3:
+        gudang.lihatBarang();
         break;
       case 4:
         break;
       case 5:
         break;
       case 6:
+        jualBarang(gudang, stack, queque);
         break;
       case 7:
         proses = false;

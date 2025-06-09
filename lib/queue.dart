@@ -1,8 +1,10 @@
+import 'package:tugas_1/abstractClassBarang.dart';
+
 class Queque {
   int front = 0;
   int rear = -1;
   int maxQueque = 0;
-  List<String?> elements = [];
+  List<Barang?> elements = [];
 
   Queque(int max) {
     front = 0;
@@ -19,15 +21,15 @@ class Queque {
     return rear == maxQueque - 1;
   }
 
-  void enqueque(String? data) {
+  void enqueque(Barang? data) {
     if (!isFull()) {
       rear += 1;
       elements[rear] = data;
     }
   }
 
-  String? dequeque() {
-    String? data;
+  Barang? dequeque() {
+    Barang? data;
     if (!isEmpty()) {
       data = elements[front];
       elements[front] = null;
@@ -39,13 +41,11 @@ class Queque {
 
   void printQueue() {
     if (!isEmpty()) {
-    print("Menampilkan barang bisa kadaluarsa");
       for (int i = rear; i > -1; i--) {
-        print("Barang dengan kode ${elements[i]}");
+        print("- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
       }
     } else {
       print("Masih kosong");
     }
   }
-
 }

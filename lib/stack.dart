@@ -1,8 +1,10 @@
 
+import 'package:tugas_1/abstractClassBarang.dart';
+
 class Stack {
   int top = -1;
   int maxStack = 0;
-  List<String?> elements = [];
+  List<Barang?> elements = [];
 
   Stack(int max) {
     maxStack = max;
@@ -17,7 +19,7 @@ class Stack {
     return top == maxStack - 1;
   }
 
-  void push(String? data) {
+  void push(Barang? data) {
     if (!isFull()) {
       top += 1;
       elements[top] = data;
@@ -26,8 +28,8 @@ class Stack {
     }
   }
 
-  String? pop() {
-    String? data;
+  Barang? pop() {
+    Barang? data;
     if (!isEmpty()) {
       data = elements[top];
       elements[top] = null;
@@ -40,9 +42,8 @@ class Stack {
 
   void printStack() {
     if (!isEmpty()) {
-      print("Isi rak barang 2:");
       for (int i = top; i > -1; i--) {
-        print("Barang dengan kode ${elements[i]}");
+        print("- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
       }
     } else {
       print("Rak barang 2 masih kosong");

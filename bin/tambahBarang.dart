@@ -6,7 +6,8 @@ import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-bool tambahBarang(DoubleLinkedListBarang stok, Queque queque, Stack stack) {
+bool tambahBarang(DoubleLinkedListBarang stok, Queque queque, Stack stack,
+    Map<String, Stack> rak1, Map<String, Queque> rak2) {
   print("=== Tambah Barang Baru ===");
   stdout.write("Masukkan Kode Barang = ");
   String kodeBarang = stdin.readLineSync()!;
@@ -22,40 +23,63 @@ bool tambahBarang(DoubleLinkedListBarang stok, Queque queque, Stack stack) {
   double hargaBeli = double.parse(stdin.readLineSync()!);
   stdout.write("Masukkan Harga Jual Barang = ");
   double hargaJual = double.parse(stdin.readLineSync()!);
-  stdout.write("Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
+  stdout.write(
+      "Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
   String tanggalKadaluarsa = stdin.readLineSync()!;
 
-  String tanggalKadaluarsaValid = "";
-  if (tanggalKadaluarsa != "0") {
-    DateTime cekTanggalKadaluarsa = DateTime.parse(tanggalKadaluarsa);
-    if (cekTanggalKadaluarsa != null && cekTanggalKadaluarsa.isAfter(DateTime.now())) {
-      tanggalKadaluarsaValid = tanggalKadaluarsa;
-    } else {
-      print("Tanggal Kadaluarsa tidak valid!");
-      return false;
-    }
-  } else {
-    tanggalKadaluarsaValid = "0";
-  }
-
-  if (tanggalKadaluarsaValid == "0") {
-    BarangTidakKadaluarsa barang = BarangTidakKadaluarsa(kodeBarang: kodeBarang, namaBarang: namaBarang, jumlahBarangDidalam: jumlahBarangDidalam, satuan: satuan, tanggalBeli: tanggalBeli, hargaBeli: hargaBeli, hargaJual: hargaJual, tanggalJual: "0");
-    stack.push(kodeBarang);
+  if (tanggalKadaluarsa == "0") {
+    try {
+    BarangTidakKadaluarsa barang = BarangTidakKadaluarsa(
+        tanggalKadaluarsa: "0",
+        kodeBarang: kodeBarang,
+        namaBarang: namaBarang,
+        jumlahBarangDidalam: jumlahBarangDidalam,
+        satuan: satuan,
+        tanggalBeli: tanggalBeli,
+        hargaBeli: hargaBeli,
+        hargaJual: hargaJual,
+        tanggalJual: "0");
+    stack.push(barang);
+    rak1[namaBarang] = stack;
     stok.tambahBelakang(barang);
     print("=== Hasil ===");
     print("Data berhasil ditambahkan ke kategori barang tidak kadaluarsa.");
     print("---");
-    stack.printStack();
+    rak1.forEach((key, value) {
+      print("$key : ");
+      value.printStack();
+    });
     print("---");
+    } catch(e) {
+      print("Gagal menambahkan barang! $e");
+    }
   } else {
-    BarangMudahKadaluarsa barang = BarangMudahKadaluarsa(tanggalKadaluarsa: tanggalKadaluarsa, kodeBarang: kodeBarang, namaBarang: namaBarang, jumlahBarangDidalam: jumlahBarangDidalam, satuan: satuan, tanggalBeli: tanggalBeli, hargaBeli: hargaBeli, hargaJual: hargaJual, tanggalJual: "0");
-    queque.enqueque(kodeBarang);
-    stok.tambahBelakang(barang);
-    print("=== Hasil ===");
-    print("Data berhasil ditambahkan ke kategori barang mudah kadaluarsa.");
-    print("---");
-    queque.printQueue();
-    print("---");
+    try {
+      BarangMudahKadaluarsa barang = BarangMudahKadaluarsa(
+          tanggalKadaluarsa: tanggalKadaluarsa,
+          kodeBarang: kodeBarang,
+          namaBarang: namaBarang,
+          jumlahBarangDidalam: jumlahBarangDidalam,
+          satuan: satuan,
+          tanggalBeli: tanggalBeli,
+          hargaBeli: hargaBeli,
+          hargaJual: hargaJual,
+          tanggalJual: "0");
+      queque.enqueque(barang);
+      rak2[namaBarang] = queque;
+      stok.tambahBelakang(barang);
+      print("=== Hasil ===");
+      print("Data berhasil ditambahkan ke kategori barang mudah kadaluarsa.");
+      print("---");
+      rak2.forEach((key, value) {
+        print("$key: ");
+        value.printQueue();
+      });
+      //print(rak2);
+      print("---");
+    } catch (e) {
+      print("Gagal menambahkan barang! $e");
+    }
   }
 
   return true;

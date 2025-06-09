@@ -3,30 +3,23 @@ import 'abstractClassBarang.dart';
 class BarangTidakKadaluarsa extends Barang {
   // Konstruktor dengan named parameters
   BarangTidakKadaluarsa({
-    super.kodeBarang,
-    super.namaBarang,
-    super.jumlahBarangDidalam,
-    super.satuan,
-    super.tanggalBeli,
-    super.hargaBeli,
-    super.tanggalJual,
-    super.hargaJual,
+    required super.kodeBarang,
+    required super.namaBarang,
+    required super.jumlahBarangDidalam,
+    required super.satuan,
+    required super.tanggalBeli,
+    required super.hargaBeli,
+    required super.tanggalJual,
+    required super.hargaJual,
+    required super.tanggalKadaluarsa
   });
-
+  
   @override
-  double jualBarang(double nominal) {
-    double kembalian = 0;
-    if (apakahSudahkadaluarsa()) {
-      // Jika barang sudah kadaluarsa, tidak bisa dijual
-    } else {
-      // Jika barang belum kadaluarsa, proses penjualan, proses jual barang
-    }
-    return kembalian;
-  }
-
-  bool apakahSudahkadaluarsa() {
-    //mengecek apakah barang ini sudah kadaluarsa atau belum
+  bool editBarang(String namaBarang, int jumlahBarangDidalam, String satuan, String tanggalBeli, double hargaBeli, double hargaJual, String tanggalKadaluarsa) {
+    // TODO: implement editBarang
     return false;
   }
+ 
+ 
   
 }
