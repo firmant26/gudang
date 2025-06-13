@@ -19,6 +19,22 @@ class Stack {
     return top == maxStack - 1;
   }
 
+  int length() {
+    return elements.length;
+  }
+
+   double? totalHargaBarang(int jumlahBarang) {
+    double? total = 0;
+    for (var i = 0; i < jumlahBarang; i++) {
+      if(elements[i] != null && elements[i]!.hargaJual != null) {
+      total = total! + elements[i]!.hargaJual!;
+      }
+    }
+    return total;
+  }
+
+
+
   void push(Barang? data) {
     if (!isFull()) {
       top += 1;
@@ -46,7 +62,7 @@ class Stack {
         print("- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
       }
     } else {
-      print("Rak barang 2 masih kosong");
+      print("Tidak ada barang, masih kosong.");
     }
   }
 }

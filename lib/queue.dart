@@ -21,6 +21,20 @@ class Queque {
     return rear == maxQueque - 1;
   }
 
+  int length() {
+    return elements.length;
+  }
+
+  double? totalHargaBarang(int jumlahBarang) {
+    double? total = 0;
+    for (var i = 0; i < jumlahBarang; i++) {
+      if(elements[i] != null && elements[i]!.hargaJual != null) {
+      total = total! + elements[i]!.hargaJual!;
+      }
+    }
+    return total;
+  }
+
   void enqueque(Barang? data) {
     if (!isFull()) {
       rear += 1;
@@ -42,10 +56,11 @@ class Queque {
   void printQueue() {
     if (!isEmpty()) {
       for (int i = rear; i > -1; i--) {
-        print("- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
+        print(
+            "- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
       }
     } else {
-      print("Masih kosong");
+      print("Tidak ada barang, masih kosong.");
     }
   }
 }

@@ -5,7 +5,7 @@ import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-void editBarang(DoubleLinkedListBarang gudang, Stack stack, Queque queque,
+void editBarang(DoubleLinkedListBarang gudang,
     Map<String, Stack> rak1, Map<String, Queque> rak2) {
   print("=== Edit Barang ===");
   stdout.write("Masukkan Kode Barang = ");

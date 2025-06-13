@@ -19,8 +19,6 @@ void main() {
    * 6. Jual Barang
    */
   DoubleLinkedListBarang gudang = DoubleLinkedListBarang();
-  Stack stack = Stack(100);
-  Queque queque = Queque(100);
   var rak1 = <String, Stack>{};
   var rak2 = <String, Queque>{};
 
@@ -35,35 +33,38 @@ void main() {
     print("6. Jual Barang");
     print("7. Keluar");
     stdout.write("Pilih salah satu menu = ");
-    int pilihan = int.parse(stdin.readLineSync()!);
-
-    switch (pilihan) {
-      case 1:
-        tambahBarang(gudang, queque, stack, rak1, rak2);
-        break;
-      case 2:
-        editBarang(gudang, stack, queque, rak1, rak2);
-        break;
-      case 3:
-        gudang.lihatBarang();
-        break;
-      case 4:
-        cariBarang(rak1, rak2);
-        break;
-      case 5:
-        hapusBarang(rak1, rak2, gudang);
-        gudang.lihatBarang();
-        break;
-      case 6:
-        jualBarang(gudang, stack, queque);
-        break;
-      case 7:
-        proses = false;
-        break;
-      default:
-        print("---");
-        print("Pilihan yang anda masukkan tidak valid!");
-        print("---");
+    try {
+      int pilihan = int.parse(stdin.readLineSync()!);
+      switch (pilihan) {
+        case 1:
+          tambahBarang(gudang, rak1, rak2);
+          break;
+        case 2:
+          editBarang(gudang, rak1, rak2);
+          break;
+        case 3:
+          gudang.lihatBarang();
+          break;
+        case 4:
+          cariBarang(rak1, rak2);
+          break;
+        case 5:
+          hapusBarang(rak1, rak2, gudang);
+          gudang.lihatBarang();
+          break;
+        case 6:
+          jualBarang(gudang, rak1, rak2);
+          break;
+        case 7:
+          proses = false;
+          break;
+        default:
+          print("---");
+          print("Pilihan yang anda masukkan tidak valid!");
+          print("---");
+      }
+    } catch (e) {
+      print("Terjadi kesalahan: ${e.toString()}");
     }
   }
 }

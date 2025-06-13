@@ -34,7 +34,7 @@ class DoubleLinkedListBarang {
     }
   }
 
-  NodeBarang? cariBarang(String kodeBarang) {
+  NodeBarang? cariBarang(String? kodeBarang) {
     NodeBarang? current = head;
     while (current != null) {
       if (current.data.kodeBarang == kodeBarang) {
@@ -43,6 +43,16 @@ class DoubleLinkedListBarang {
       current = current.next;
     }
     return null;
+  }
+
+  bool jualBarang(String? kodeBarang, String tanggalJual) {
+    NodeBarang? item = cariBarang(kodeBarang);
+    if (item != null) {
+      item.data.tanggalJual = tanggalJual;
+      return true;
+    }
+    print("Barang tidak ditemukan di gudang!");
+    return false;
   }
 
   void lihatBarang() {
@@ -60,6 +70,9 @@ class DoubleLinkedListBarang {
       print("Tanggal Beli : ${current.data.tanggalBeli}");
       print("Harga Beli   : ${current.data.hargaBeli}");
       print("Harga Jual   : ${current.data.hargaJual}");
+      if (current.data.tanggalJual != null) {
+        print("Tanggal Jual : ${current.data.tanggalJual}");
+      }
       print("----------------------------------------");
       current = current.next;
     }
@@ -71,7 +84,8 @@ class DoubleLinkedListBarang {
       print("------------ DETAIL BARANG: ------------");
       print("Nama         : ${node.data.namaBarang}");
       print("Kode         : ${node.data.kodeBarang}");
-      print("Jumlah       : ${node.data.jumlahBarangDidalam} ${node.data.satuan}");
+      print(
+          "Jumlah       : ${node.data.jumlahBarangDidalam} ${node.data.satuan}");
       print("Tanggal Beli : ${node.data.tanggalBeli}");
       print("Harga Beli   : ${node.data.hargaBeli}");
       print("Harga Jual   : ${node.data.hargaJual}");
