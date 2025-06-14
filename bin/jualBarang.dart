@@ -29,6 +29,10 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       print("Total harga tidak valid");
       return false;
     }
+    if (totalHargaBarang == 0) {
+      print("Barang sudah tidak ada!");
+      return false;
+    }
     stdout.write("Masukkan Nominal Uang Dari Pelanggan = ");
     double nominal = double.parse(stdin.readLineSync()!);
 
@@ -40,7 +44,7 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
         print("Stok tidak cukup untuk melanjutkan pembelian!");
         return false;
       }
-      if (totalHargaBarang <= nominal) {
+      if (nominal >= totalHargaBarang) {
         // proses menghapus barang di stack
         for (var i = 0; i < jumlahPembelian; i++) {
           if (rak1[namaBarang]?.elements[i]!.kodeBarang != null) {
@@ -50,16 +54,18 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
             gudang.jualBarang(kodeBarang, DateTime.now().toString());
           }
         }
+        kembalian = nominal - totalHargaBarang;
+        print("Proses pembelian selesai, kembalian = RP$kembalian");
+      } else {
+        print("Uang tidak cukup!");
       }
-      kembalian = nominal - totalHargaBarang;
-      print("Proses pembelian selesai, kembalian = $kembalian");
     } else if (rak2.containsKey(namaBarang)) {
       stok = rak2[namaBarang]!.length();
       if (stok < jumlahPembelian) {
         print("Stok tidak cukup untuk melanjutkan pembelian!");
         return false;
       }
-      if (totalHargaBarang <= nominal) {
+      if (nominal >= totalHargaBarang) {
         // proses menghapus barang di queque
         for (var i = 0; i < jumlahPembelian; i++) {
           if (rak1[namaBarang]?.elements[i]!.kodeBarang != null) {
@@ -69,9 +75,11 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
             gudang.jualBarang(kodeBarang, DateTime.now().toString());
           }
         }
+        kembalian = nominal - totalHargaBarang;
+        print("Proses pembelian selesai, kembalian = RP$kembalian");
+      } else {
+        print("Uang tidak cukup!");
       }
-      kembalian = nominal - totalHargaBarang;
-      print("Proses pembelian selesai, kembalian = $kembalian");
     }
 
     return true;

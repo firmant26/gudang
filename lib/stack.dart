@@ -59,7 +59,7 @@ class Stack {
   void printStack() {
     if (!isEmpty()) {
       for (int i = top; i > -1; i--) {
-        print("- ${elements[i]?.namaBarang} dengan kode ${elements[i]?.kodeBarang}, dibeli pada ${elements[i]?.tanggalBeli}");
+        print("${elements[i]?.jumlahBarangDidalam} ${elements[i]?.satuan} ${elements[i]?.namaBarang} dengan harga RP${elements[i]?.hargaJual}");
       }
     } else {
       print("Tidak ada barang, masih kosong.");

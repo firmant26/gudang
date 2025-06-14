@@ -30,8 +30,7 @@ void editBarang(DoubleLinkedListBarang gudang,
     double hargaBeli = double.parse(stdin.readLineSync()!);
     stdout.write("Masukkan Harga Jual Barang = ");
     double hargaJual = double.parse(stdin.readLineSync()!);
-    stdout.write(
-        "Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
+    stdout.write("Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
     String tanggalKadaluarsa = stdin.readLineSync()!;
 
     NodeBarang? cari = gudang.cariBarang(kodeBarang); // NodeBarang

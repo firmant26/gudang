@@ -21,8 +21,14 @@ class BarangMudahKadaluarsa extends Barang {
   
   @override
   bool editBarang(String namaBarang, int jumlahBarangDidalam, String satuan, String tanggalBeli, double hargaBeli, double hargaJual, String tanggalKadaluarsa) {
-    // TODO: implement editBarang
-    return false;
+    this.namaBarang  = namaBarang;
+    this.jumlahBarangDidalam = jumlahBarangDidalam;
+    this.satuan = satuan;
+    this.tanggalBeli = tanggalBeli;
+    this.hargaBeli = hargaBeli;
+    this.hargaJual = hargaJual;
+    this.tanggalKadaluarsa = tanggalKadaluarsa;
+    return true;
   }
   
 
