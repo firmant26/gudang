@@ -8,6 +8,7 @@ import 'editBarang.dart';
 import 'cariBarang.dart';
 import 'hapusBarang.dart';
 import 'jualBarang.dart';
+import 'dataDummy.dart';
 
 void main() {
   /**
@@ -32,6 +33,7 @@ void main() {
     print("5. Hapus Barang");
     print("6. Jual Barang");
     print("7. Keluar");
+    print("8. Data Dummy");
     stdout.write("Pilih salah satu menu = ");
     try {
       int pilihan = int.parse(stdin.readLineSync()!);
@@ -57,6 +59,9 @@ void main() {
           break;
         case 7:
           proses = false;
+          break;
+        case 8:
+          dataDummy(gudang, rak1, rak2);
           break;
         default:
           print("---");
