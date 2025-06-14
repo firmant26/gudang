@@ -18,6 +18,8 @@ void main() {
    * 4. Cari Barang
    * 5. Hapus Barang
    * 6. Jual Barang
+   * 7. Keluar
+   * 8. Data Dummy
    */
   DoubleLinkedListBarang gudang = DoubleLinkedListBarang();
   var rak1 = <String, Stack>{};

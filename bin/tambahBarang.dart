@@ -6,7 +6,8 @@ import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1, Map<String, Queque> rak2) {
+bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
+    Map<String, Queque> rak2) {
   print("=== Tambah Barang Baru ===");
   stdout.write("Masukkan Kode Barang = ");
   String kodeBarang = stdin.readLineSync()!;
@@ -38,6 +39,13 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1, Map<Stri
           hargaBeli: hargaBeli,
           hargaJual: hargaJual,
           tanggalJual: "0");
+      bool statusAdd = stok.tambahBelakang(barang);
+      if (statusAdd == false) {
+        print("---");
+        print("Pesan Error: Kode barang sudah ada!");
+        print("---");
+        return false;
+      }
       if (rak1.containsKey(namaBarang) == true) {
         rak1[namaBarang]!.push(barang);
       } else if (rak1.containsKey(namaBarang) == false) {
@@ -45,7 +53,6 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1, Map<Stri
         newStack.push(barang);
         rak1[namaBarang] = newStack;
       }
-      stok.tambahBelakang(barang);
       print("=== Hasil ===");
       print("Data berhasil ditambahkan ke kategori barang tidak kadaluarsa.");
       print("---");
@@ -69,6 +76,13 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1, Map<Stri
           hargaBeli: hargaBeli,
           hargaJual: hargaJual,
           tanggalJual: "0");
+      bool statusAdd = stok.tambahBelakang(barang);
+      if (statusAdd == false) {
+        print("---");
+        print("Pesan Error: Kode barang sudah ada!");
+        print("---");
+        return false;
+      }
       if (rak2.containsKey(namaBarang) == true) {
         rak2[namaBarang]!.enqueque(barang);
       } else if (rak2.containsKey(namaBarang) == false) {
@@ -76,7 +90,6 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1, Map<Stri
         newQueque.enqueque(barang);
         rak2[namaBarang] = newQueque;
       }
-      stok.tambahBelakang(barang);
       print("=== Hasil ===");
       print("Data berhasil ditambahkan ke kategori barang mudah kadaluarsa.");
       print("---");

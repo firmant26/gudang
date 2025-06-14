@@ -12,7 +12,7 @@ class DoubleLinkedListBarang {
   NodeBarang? head;
   NodeBarang? tail;
 
-  bool findKodeBarang(String kodeBarang) {
+  bool findKodeBarang(String? kodeBarang) {
     NodeBarang? current = head;
     while (current != null) {
       if (current.data.kodeBarang == kodeBarang) {
@@ -23,7 +23,11 @@ class DoubleLinkedListBarang {
     return false;
   }
 
-  void tambahBelakang(Barang barang) {
+  bool tambahBelakang(Barang barang) {
+    bool findBarang = findKodeBarang(barang.kodeBarang);
+    if(findBarang == true) {
+      return false;
+    }
     NodeBarang node = NodeBarang(barang);
     if (tail == null) {
       head = tail = node;
@@ -32,6 +36,7 @@ class DoubleLinkedListBarang {
       node.prev = tail;
       tail = node;
     }
+    return true;
   }
 
   NodeBarang? cariBarang(String? kodeBarang) {

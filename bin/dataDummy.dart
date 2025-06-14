@@ -1,10 +1,66 @@
+import 'package:tugas_1/abstractClassBarang.dart';
 import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
 import 'package:tugas_1/classBarangTidakKadaluarsa.dart';
 import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1, Map<String, Queque> rak2) {
+bool tambahDataDummyRak1(
+    DoubleLinkedListBarang stok, Map<String, Stack> rak1, Barang barang) {
+  bool statusAdd = stok.tambahBelakang(barang);
+  if (statusAdd == false) {
+    print("---");
+    print("Pesan Error: Kode barang sudah ada!");
+    print("---");
+    return false;
+  }
+  if (rak1.containsKey(barang.namaBarang) == true) {
+    rak1[barang.namaBarang]!.push(barang);
+  } else if (rak1.containsKey(barang.namaBarang) == false) {
+    Stack newStack = Stack(100);
+    newStack.push(barang);
+    rak1[barang.namaBarang!] = newStack;
+  }
+  print("=== Hasil ===");
+  print("Data berhasil ditambahkan ke kategori barang tidak kadaluarsa.");
+  print("---");
+  rak1.forEach((key, value) {
+    print("$key : ");
+    value.printStack();
+  });
+  print("---");
+  return true;
+}
+
+bool tambahDataDummyRak2(
+    DoubleLinkedListBarang stok, Map<String, Queque> rak2, Barang barang) {
+  bool statusAdd = stok.tambahBelakang(barang);
+  if (statusAdd == false) {
+    print("---");
+    print("Pesan Error: Kode barang sudah ada!");
+    print("---");
+    return false;
+  }
+  if (rak2.containsKey(barang.namaBarang) == true) {
+    rak2[barang.namaBarang]!.enqueque(barang);
+  } else if (rak2.containsKey(barang.namaBarang) == false) {
+    Queque newStack = Queque(100);
+    newStack.enqueque(barang);
+    rak2[barang.namaBarang!] = newStack;
+  }
+  print("=== Hasil ===");
+  print("Data berhasil ditambahkan ke kategori barang tidak kadaluarsa.");
+  print("---");
+  rak2.forEach((key, value) {
+    print("$key : ");
+    value.printQueue();
+  });
+  print("---");
+  return true;
+}
+
+void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
+    Map<String, Queque> rak2) {
   BarangTidakKadaluarsa kipas1 = BarangTidakKadaluarsa(
       kodeBarang: "k10",
       namaBarang: "kipas angin",
@@ -25,11 +81,8 @@ void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1, Map<Strin
       tanggalJual: "0",
       hargaJual: 150000,
       tanggalKadaluarsa: "0");
-
-  Stack rakBarang1 = Stack(100);
-  rakBarang1.push(kipas1);
-  rakBarang1.push(kipas2);
-  rak1["kipas angin"] = rakBarang1;
+  tambahDataDummyRak1(gudang, rak1, kipas1);
+  tambahDataDummyRak1(gudang, rak1, kipas2);
 
   BarangMudahKadaluarsa telur1 = BarangMudahKadaluarsa(
       kodeBarang: "t10",
@@ -51,14 +104,6 @@ void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1, Map<Strin
       tanggalJual: "0",
       hargaJual: 15000,
       tanggalKadaluarsa: "2025-06-30");
-
-  Queque rakBarang2 = Queque(100);
-  rakBarang2.enqueque(telur1);
-  rakBarang2.enqueque(telur2);
-  rak2["telur"] = rakBarang2;
-
-  gudang.tambahBelakang(kipas1);
-  gudang.tambahBelakang(kipas2);
-  gudang.tambahBelakang(telur1);
-  gudang.tambahBelakang(telur2);
+  tambahDataDummyRak2(gudang, rak2, telur1);
+  tambahDataDummyRak2(gudang, rak2, telur2);
 }
