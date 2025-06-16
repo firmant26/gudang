@@ -14,8 +14,8 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     String namaBarang = stdin.readLineSync()!;
 
     // Mengecek Ketersediaan Nama Barang
-
-    if (rak1.containsKey(namaBarang) || rak2.containsKey(namaBarang) == false) {
+    bool cekBarang = rak1.containsKey(namaBarang) || rak2.containsKey(namaBarang);
+    if (!cekBarang) {
       print("Pesan Error : Nama Barang Tidak Ditemukan!");
       return false;
     }
