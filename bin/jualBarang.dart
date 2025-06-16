@@ -28,14 +28,14 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     // Mengecek Stok Barang
 
     if (rak1.containsKey(namaBarang)) {
-      if (rak1[namaBarang]!.length() < jumlahPembelian) {
+      if (rak1[namaBarang]!.length() < jumlahPembelian || jumlahPembelian <= rak1[namaBarang]!.length()) {
         print("Pesan Error: Stok Barang Tidak Cukup!");
         return false;
       }
     }
 
     if (rak2.containsKey(namaBarang)) {
-      if (rak2[namaBarang]!.length() < jumlahPembelian) {
+      if (rak2[namaBarang]!.length() < jumlahPembelian || jumlahPembelian <= rak2[namaBarang]!.length()) {
         print("Pesan Error: Stok Barang Tidak Cukup!");
         return false;
       }
