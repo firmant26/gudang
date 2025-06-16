@@ -28,14 +28,20 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     // Mengecek Stok Barang
 
     if (rak1.containsKey(namaBarang)) {
-      if (rak1[namaBarang]!.length() < jumlahPembelian || jumlahPembelian <= rak1[namaBarang]!.length()) {
+      if (rak1[namaBarang]!.length() < jumlahPembelian) {
+        print("Pesan Error: Stok Barang Tidak Cukup!");
+        return false;
+      } else if (jumlahPembelian > rak1[namaBarang]!.length()) {
         print("Pesan Error: Stok Barang Tidak Cukup!");
         return false;
       }
     }
 
     if (rak2.containsKey(namaBarang)) {
-      if (rak2[namaBarang]!.length() < jumlahPembelian || jumlahPembelian <= rak2[namaBarang]!.length()) {
+      if (rak2[namaBarang]!.length() < jumlahPembelian) {
+        print("Pesan Error: Stok Barang Tidak Cukup!");
+        return false;
+      } else if (jumlahPembelian > rak2[namaBarang]!.length()) {
         print("Pesan Error: Stok Barang Tidak Cukup!");
         return false;
       }
@@ -101,7 +107,7 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       if (nominal >= totalHargaBarang) {
         // proses menghapus barang di queque
         for (var i = 0; i < jumlahPembelian; i++) {
-          if (rak1[namaBarang]?.elements[i]!.kodeBarang != null) {
+          if (rak2[namaBarang]?.elements[i]!.kodeBarang != null) {
             String? kodeBarang = rak2[namaBarang]?.elements[i]!.kodeBarang;
             rak2[namaBarang]?.dequeque();
             // proses menambahkan tanggal jual di barang
