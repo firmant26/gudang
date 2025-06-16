@@ -83,7 +83,7 @@ class DoubleLinkedListBarang {
     }
   }
 
-  void lihatSatuBarang(String kodeBarang) {
+  bool lihatSatuBarang(String kodeBarang) {
     NodeBarang? node = cariBarang(kodeBarang);
     if (node != null) {
       print("------------ DETAIL BARANG: ------------");
@@ -95,9 +95,11 @@ class DoubleLinkedListBarang {
       print("Harga Beli   : ${node.data.hargaBeli}");
       print("Harga Jual   : ${node.data.hargaJual}");
       print("----------------------------------------");
+      return true;
     } else {
-      print("Barang dengan kode '$kodeBarang' tidak ditemukan.");
+      print("Pesan Error: Barang dengan kode '$kodeBarang' tidak ditemukan.");
     }
+    return false;
   }
 
   void hapusBarang(String kodeBarang, DoubleLinkedListBarang barang) {

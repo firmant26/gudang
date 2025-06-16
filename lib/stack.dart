@@ -20,7 +20,13 @@ class Stack {
   }
 
   int length() {
-    return elements.length;
+    int panjang = 0;
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i] != null) {
+        panjang++;
+      }
+    }
+    return panjang;
   }
 
    double? totalHargaBarang(int jumlahBarang) {

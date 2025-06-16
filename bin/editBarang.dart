@@ -11,7 +11,10 @@ void editBarang(DoubleLinkedListBarang gudang,
   stdout.write("Masukkan Kode Barang = ");
   String kodeBarang = stdin.readLineSync()!;
 
-  gudang.lihatSatuBarang(kodeBarang);
+  bool lihat = gudang.lihatSatuBarang(kodeBarang);
+  if (lihat == false) {
+    return;
+  }
 
   stdout.write("Apakah benar mau mengedit barang ini? (Y/N) ");
   String yakin = stdin.readLineSync()!;

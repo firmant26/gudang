@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:tugas_1/abstractClassBarang.dart';
 
 class Queque {
@@ -22,14 +24,20 @@ class Queque {
   }
 
   int length() {
-    return elements.length;
+    int panjang = 0;
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i] != null) {
+        panjang++;
+      }
+    }
+    return panjang;
   }
 
   double? totalHargaBarang(int jumlahBarang) {
     double? total = 0;
     for (var i = 0; i < jumlahBarang; i++) {
-      if(elements[i] != null && elements[i]!.hargaJual != null) {
-      total = total! + elements[i]!.hargaJual!;
+      if (elements[i] != null && elements[i]!.hargaJual != null) {
+        total = total! + elements[i]!.hargaJual!;
       }
     }
     return total;

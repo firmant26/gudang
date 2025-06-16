@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:tugas_1/abstractClassBarang.dart';
@@ -11,9 +12,38 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     print("=== Jual Barang ===");
     stdout.write("Masukkan Nama Barang = ");
     String namaBarang = stdin.readLineSync()!;
+
+    // Mengecek Ketersediaan Nama Barang
+
+    if (rak1.containsKey(namaBarang) || rak2.containsKey(namaBarang) == false) {
+      print("Pesan Error : Nama Barang Tidak Ditemukan!");
+      return false;
+    }
+
+    // Proses Mengecek Ketersediaan Nama Barang Selesai
     stdout.write("Masukkan Jumlah Pembelian = ");
     int jumlahPembelian = int.parse(stdin.readLineSync()!);
     print("$namaBarang $jumlahPembelian");
+
+    // Mengecek Stok Barang
+
+    if (rak1.containsKey(namaBarang)) {
+      if (rak1[namaBarang]!.length() < jumlahPembelian) {
+        print("Pesan Error: Stok Barang Tidak Cukup!");
+        return false;
+      }
+    }
+
+    if (rak2.containsKey(namaBarang)) {
+      if (rak2[namaBarang]!.length() < jumlahPembelian) {
+        print("Pesan Error: Stok Barang Tidak Cukup!");
+        return false;
+      }
+    }
+
+    // Proses Mengecek Stok Barang Selesai
+
+    // Menghitung Total Harga Barang
     double totalHargaBarang;
     if (rak1.containsKey(namaBarang)) {
       totalHargaBarang = rak1[namaBarang]!.totalHargaBarang(jumlahPembelian)!;
@@ -33,6 +63,9 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       print("Barang sudah tidak ada!");
       return false;
     }
+
+    // Proses Menghitung Total Harga Barang Selesai
+
     stdout.write("Masukkan Nominal Uang Dari Pelanggan = ");
     double nominal = double.parse(stdin.readLineSync()!);
 
