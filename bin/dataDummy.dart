@@ -5,8 +5,7 @@ import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-bool tambahDataDummyRak1(
-    DoubleLinkedListBarang stok, Map<String, Stack> rak1, Barang barang) {
+bool tambahDataDummyRak1(DoubleLinkedListBarang stok, Map<String, Stack> rak1, BarangTidakKadaluarsa barang) {
   bool statusAdd = stok.tambahBelakang(barang);
   if (statusAdd == false) {
     print("---");
@@ -32,8 +31,7 @@ bool tambahDataDummyRak1(
   return true;
 }
 
-bool tambahDataDummyRak2(
-    DoubleLinkedListBarang stok, Map<String, Queque> rak2, Barang barang) {
+bool tambahDataDummyRak2(DoubleLinkedListBarang stok, Map<String, Queque> rak2, BarangMudahKadaluarsa barang) {
   bool statusAdd = stok.tambahBelakang(barang);
   if (statusAdd == false) {
     print("---");
@@ -59,8 +57,7 @@ bool tambahDataDummyRak2(
   return true;
 }
 
-void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
-    Map<String, Queque> rak2) {
+void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1, Map<String, Queque> rak2) {
   BarangTidakKadaluarsa kipas1 = BarangTidakKadaluarsa(
       kodeBarang: "k10",
       namaBarang: "kipas angin",
@@ -69,8 +66,7 @@ void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       tanggalBeli: "2025-06-14",
       hargaBeli: 120000,
       tanggalJual: "0",
-      hargaJual: 150000,
-      tanggalKadaluarsa: "0");
+      hargaJual: 150000);
   BarangTidakKadaluarsa kipas2 = BarangTidakKadaluarsa(
       kodeBarang: "k11",
       namaBarang: "kipas angin",
@@ -79,8 +75,7 @@ void dataDummy(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       tanggalBeli: "2025-06-14",
       hargaBeli: 120000,
       tanggalJual: "0",
-      hargaJual: 150000,
-      tanggalKadaluarsa: "0");
+      hargaJual: 150000);
   tambahDataDummyRak1(gudang, rak1, kipas1);
   tambahDataDummyRak1(gudang, rak1, kipas2);
 

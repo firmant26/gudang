@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:tugas_1/abstractClassBarang.dart';
+import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
 
 class Queque {
   int front = 0;
   int rear = -1;
   int maxQueque = 0;
-  List<Barang?> elements = [];
+  List<BarangMudahKadaluarsa?> elements = [];
 
   Queque(int max) {
     front = 0;
@@ -43,15 +43,15 @@ class Queque {
     return total;
   }
 
-  void enqueque(Barang? data) {
+  void enqueque(BarangMudahKadaluarsa? data) {
     if (!isFull()) {
       rear += 1;
       elements[rear] = data;
     }
   }
 
-  Barang? dequeque() {
-    Barang? data;
+  BarangMudahKadaluarsa? dequeque() {
+    BarangMudahKadaluarsa? data;
     if (!isEmpty()) {
       data = elements[front];
       elements[front] = null;

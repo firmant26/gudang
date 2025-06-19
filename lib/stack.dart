@@ -1,10 +1,10 @@
 
-import 'package:tugas_1/abstractClassBarang.dart';
+import 'package:tugas_1/classBarangTidakKadaluarsa.dart';
 
 class Stack {
   int top = -1;
   int maxStack = 0;
-  List<Barang?> elements = [];
+  List<BarangTidakKadaluarsa?> elements = [];
 
   Stack(int max) {
     maxStack = max;
@@ -41,7 +41,7 @@ class Stack {
 
 
 
-  void push(Barang? data) {
+  void push(BarangTidakKadaluarsa? data) {
     if (!isFull()) {
       top += 1;
       elements[top] = data;
@@ -50,8 +50,8 @@ class Stack {
     }
   }
 
-  Barang? pop() {
-    Barang? data;
+  BarangTidakKadaluarsa? pop() {
+    BarangTidakKadaluarsa? data;
     if (!isEmpty()) {
       data = elements[top];
       elements[top] = null;

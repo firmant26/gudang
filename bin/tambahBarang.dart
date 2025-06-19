@@ -30,7 +30,6 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
   if (tanggalKadaluarsa == "0") {
     try {
       BarangTidakKadaluarsa barang = BarangTidakKadaluarsa(
-          tanggalKadaluarsa: "0",
           kodeBarang: kodeBarang,
           namaBarang: namaBarang,
           jumlahBarangDidalam: jumlahBarangDidalam,

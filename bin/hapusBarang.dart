@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:tugas_1/abstractClassBarang.dart';
+import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
 import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
@@ -51,7 +52,7 @@ void hapusBarang(Map<String, Stack> rak1, Map<String, Queque> rak2,
         }
       }
     }
-    queque.elements.setAll(0, newElements.cast<Barang?>());
+    queque.elements.setAll(0, newElements.cast<BarangMudahKadaluarsa?>());
     queque.front = newFront;
     queque.rear = newRear;
   });
