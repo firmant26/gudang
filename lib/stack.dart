@@ -39,7 +39,20 @@ class Stack {
     return total;
   }
 
-
+ void deleteMiddle(String namaBarang) {
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i] is BarangTidakKadaluarsa) {
+        if (elements[i]?.namaBarang == namaBarang) {
+          for (var j = i; j < elements.length - 1; j++) {
+            elements[j] = elements[j+1];
+          }
+          elements[elements.length - 1] = null;
+          top--;
+          return;
+        }
+      }
+    }
+  }
 
   void push(BarangTidakKadaluarsa? data) {
     if (!isFull()) {

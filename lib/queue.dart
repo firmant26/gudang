@@ -43,6 +43,21 @@ class Queque {
     return total;
   }
 
+   void deleteMiddle(String namaBarang) {
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i] is BarangMudahKadaluarsa) {
+        if (elements[i]?.namaBarang == namaBarang) {
+          for (var j = i; j < elements.length - 1; j++) {
+            elements[j] = elements[j+1];
+          }
+          elements[elements.length - 1] = null;
+          rear--;
+          return;
+        }
+      }
+    }
+  }
+
   void enqueque(BarangMudahKadaluarsa? data) {
     if (!isFull()) {
       rear += 1;
@@ -64,8 +79,7 @@ class Queque {
   void printQueue() {
     if (!isEmpty()) {
       for (int i = rear; i > -1; i--) {
-        print(
-            "- ${elements[i]?.jumlahBarangDidalam} ${elements[i]?.satuan} ${elements[i]?.namaBarang} dengan harga RP${elements[i]?.hargaJual}");
+        print("- ${elements[i]?.jumlahBarangDidalam} ${elements[i]?.satuan} ${elements[i]?.namaBarang} dengan harga RP${elements[i]?.hargaJual}");
       }
     } else {
       print("Tidak ada barang, masih kosong.");

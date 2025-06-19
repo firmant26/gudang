@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:tugas_1/abstractClassBarang.dart';
+import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
+import 'package:tugas_1/classBarangTidakKadaluarsa.dart';
 import 'package:tugas_1/doubleLinkedList.dart';
 import 'package:tugas_1/queue.dart';
 import 'package:tugas_1/stack.dart';
 
-void editBarang(DoubleLinkedListBarang gudang,
-    Map<String, Stack> rak1, Map<String, Queque> rak2) {
+void editBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
+    Map<String, Queque> rak2) {
   print("=== Edit Barang ===");
   stdout.write("Masukkan Kode Barang = ");
   String kodeBarang = stdin.readLineSync()!;
@@ -33,13 +35,45 @@ void editBarang(DoubleLinkedListBarang gudang,
     double hargaBeli = double.parse(stdin.readLineSync()!);
     stdout.write("Masukkan Harga Jual Barang = ");
     double hargaJual = double.parse(stdin.readLineSync()!);
-    stdout.write("Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
+    stdout.write(
+        "Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
     String tanggalKadaluarsa = stdin.readLineSync()!;
 
     NodeBarang? cari = gudang.cariBarang(kodeBarang); // NodeBarang
     Barang editBarang = cari!.data;
-    bool update = editBarang.editBarang(namaBarang, jumlahBarangDidalam, satuan, tanggalBeli, hargaBeli, hargaJual, tanggalKadaluarsa);
-   
+    String? namaBarangLama = editBarang.namaBarang;
+
+    if (namaBarangLama != namaBarang) {
+      if (editBarang is BarangMudahKadaluarsa) {
+        rak2[namaBarangLama]?.deleteMiddle(namaBarangLama!);
+        if (rak2[namaBarangLama]!.isEmpty()) {
+          rak2.remove(namaBarangLama);
+        }
+        if (rak2.containsKey(namaBarang) == true) {
+          rak2[namaBarang]!.enqueque(editBarang);
+        } else if (rak2.containsKey(namaBarang) == false) {
+          Queque newQueque = Queque(100);
+          newQueque.enqueque(editBarang);
+          rak2[namaBarang] = newQueque;
+        }
+      } else if (editBarang is BarangTidakKadaluarsa) {
+        rak1[namaBarangLama]?.deleteMiddle(namaBarangLama!);
+         if (rak1[namaBarangLama]!.isEmpty()) {
+          rak1.remove(namaBarangLama);
+        }
+        if (rak1.containsKey(namaBarang) == true) {
+          rak1[namaBarang]!.push(editBarang);
+        } else if (rak1.containsKey(namaBarang) == false) {
+          Stack newStack = Stack(100);
+          newStack.push(editBarang);
+          rak1[namaBarang] = newStack;
+        }
+      }
+    }
+
+    bool update = editBarang.editBarang(namaBarang, jumlahBarangDidalam, satuan,
+        tanggalBeli, hargaBeli, hargaJual, tanggalKadaluarsa);
+
     if (update) {
       print("Sukses mengubah barang, berikut datanya : ");
       gudang.lihatSatuBarang(kodeBarang);
