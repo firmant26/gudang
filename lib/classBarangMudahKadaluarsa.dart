@@ -1,7 +1,7 @@
 import 'abstractClassBarang.dart';
 
 class BarangMudahKadaluarsa extends Barang {
-  String? tanggalKadaluarsa;
+  
   // Konstruktor
   BarangMudahKadaluarsa({
     super.kodeBarang,
@@ -30,11 +30,6 @@ class BarangMudahKadaluarsa extends Barang {
       this.tanggalKadaluarsa = "0";
     }
 
-  }
- 
-  bool apakahSudahkadaluarsa() {
-    //mengecek apakah barang ini sudah kadaluarsa atau belum
-    return false;
   }
   
   @override

@@ -1,3 +1,5 @@
+import 'package:tugas_1/classBarangMudahKadaluarsa.dart';
+
 import 'abstractClassBarang.dart';
 
 class NodeBarang {
@@ -25,7 +27,7 @@ class DoubleLinkedListBarang {
 
   bool tambahBelakang(Barang barang) {
     bool findBarang = findKodeBarang(barang.kodeBarang);
-    if(findBarang == true) {
+    if (findBarang == true) {
       return false;
     }
     NodeBarang node = NodeBarang(barang);
@@ -68,15 +70,20 @@ class DoubleLinkedListBarang {
     print('------------ DAFTAR BARANG: ------------');
     NodeBarang? current = head;
     while (current != null) {
-      print("Nama         : ${current.data.namaBarang}");
-      print("Kode         : ${current.data.kodeBarang}");
-      print(
-          "Jumlah       : ${current.data.jumlahBarangDidalam} ${current.data.satuan}");
-      print("Tanggal Beli : ${current.data.tanggalBeli}");
-      print("Harga Beli   : ${current.data.hargaBeli}");
-      print("Harga Jual   : ${current.data.hargaJual}");
+      print("Nama               : ${current.data.namaBarang}");
+      print("Kode               : ${current.data.kodeBarang}");
+      print("Jumlah             : ${current.data.jumlahBarangDidalam} ${current.data.satuan}");
+      print("Tanggal Beli       : ${current.data.tanggalBeli}");
+      print("Harga Beli         : ${current.data.hargaBeli}");
+      print("Harga Jual         : ${current.data.hargaJual}");
       if (current.data.tanggalJual != null) {
-        print("Tanggal Jual : ${current.data.tanggalJual}");
+        print("Tanggal Jual       : ${current.data.tanggalJual}");
+      }
+      if (current.data is BarangMudahKadaluarsa) {
+        print("Tanggal Kadaluarsa : ${current.data.tanggalKadaluarsa}");
+        print("Tipe Barang        : Barang Mudah Kadaluarsa");
+      } else {
+        print("Tipe Barang        : Barang Tidak Kadaluarsa");
       }
       print("----------------------------------------");
       current = current.next;
@@ -87,13 +94,18 @@ class DoubleLinkedListBarang {
     NodeBarang? node = cariBarang(kodeBarang);
     if (node != null) {
       print("------------ DETAIL BARANG: ------------");
-      print("Nama         : ${node.data.namaBarang}");
-      print("Kode         : ${node.data.kodeBarang}");
-      print(
-          "Jumlah       : ${node.data.jumlahBarangDidalam} ${node.data.satuan}");
-      print("Tanggal Beli : ${node.data.tanggalBeli}");
-      print("Harga Beli   : ${node.data.hargaBeli}");
-      print("Harga Jual   : ${node.data.hargaJual}");
+      print("Nama               : ${node.data.namaBarang}");
+      print("Kode               : ${node.data.kodeBarang}");
+      print("Jumlah             : ${node.data.jumlahBarangDidalam} ${node.data.satuan}");
+      print("Tanggal Beli       : ${node.data.tanggalBeli}");
+      print("Harga Beli         : ${node.data.hargaBeli}");
+      print("Harga Jual         : ${node.data.hargaJual}");
+      if(node is BarangMudahKadaluarsa) {
+        print("Tanggal Kadaluarsa : ${node.data.tanggalKadaluarsa}");
+        print("Tipe Barang        : Barang Mudah Kadaluarsa");
+      } else {
+        print("Tipe Barang        : Barang Tidak Kadaluarsa");
+      }
       print("----------------------------------------");
       return true;
     } else {
