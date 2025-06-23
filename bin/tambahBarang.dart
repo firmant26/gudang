@@ -11,10 +11,30 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
   print("=== Tambah Barang Baru ===");
   stdout.write("Masukkan Kode Barang = ");
   String kodeBarang = stdin.readLineSync()!;
+
+  // validasi apakah sudah ada kode barang di double linked list
+  bool findKodeBarang = stok.findKodeBarang(kodeBarang);
+  if (findKodeBarang) {
+    print("---");
+    print("Pesan Error: Kode barang sudah ada!");
+    print("---");
+    return false;
+  }
+
   stdout.write("Masukkan Nama Barang = ");
   String namaBarang = stdin.readLineSync()!;
   stdout.write("Masukkan Jumlah Barang Di dalam = ");
   int jumlahBarangDidalam = int.parse(stdin.readLineSync()!);
+
+  // validasi apakah jumlah barang di 
+  if (jumlahBarangDidalam <= 0) {
+    print("---");
+    print(
+        "Pesan Error: Jumlah barang didalam tidak boleh kurang dari sama dengan 1!");
+    print("---");
+    return false;
+  }
+
   stdout.write("Masukkan Satuan Barang = ");
   String satuan = stdin.readLineSync()!;
   stdout.write("Masukkan Tanggal Beli Barang (Masuk Gudang) = ");
@@ -38,13 +58,7 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
           hargaBeli: hargaBeli,
           hargaJual: hargaJual,
           tanggalJual: "0");
-      bool statusAdd = stok.tambahBelakang(barang);
-      if (statusAdd == false) {
-        print("---");
-        print("Pesan Error: Kode barang sudah ada!");
-        print("---");
-        return false;
-      }
+      stok.tambahBelakang(barang);
       if (rak1.containsKey(namaBarang) == true) {
         rak1[namaBarang]!.push(barang);
       } else if (rak1.containsKey(namaBarang) == false) {
@@ -61,7 +75,9 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
       });
       print("---");
     } catch (e) {
-      print("Gagal menambahkan barang! $e");
+      print("---");
+      print("Pesan Error: $e!");
+      print("---");
     }
   } else {
     try {
@@ -75,13 +91,7 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
           hargaBeli: hargaBeli,
           hargaJual: hargaJual,
           tanggalJual: "0");
-      bool statusAdd = stok.tambahBelakang(barang);
-      if (statusAdd == false) {
-        print("---");
-        print("Pesan Error: Kode barang sudah ada!");
-        print("---");
-        return false;
-      }
+      stok.tambahBelakang(barang);
       if (rak2.containsKey(namaBarang) == true) {
         rak2[namaBarang]!.enqueque(barang);
       } else if (rak2.containsKey(namaBarang) == false) {
@@ -99,7 +109,9 @@ bool tambahBarang(DoubleLinkedListBarang stok, Map<String, Stack> rak1,
       //print(rak2);
       print("---");
     } catch (e) {
-      print("Gagal menambahkan barang! $e");
+      print("---");
+      print("Pesan Error: $e!");
+      print("---");
     }
   }
 

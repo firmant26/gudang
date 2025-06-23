@@ -14,9 +14,12 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     String namaBarang = stdin.readLineSync()!;
 
     // Mengecek Ketersediaan Nama Barang
-    bool cekBarang = rak1.containsKey(namaBarang) || rak2.containsKey(namaBarang);
+    bool cekBarang =
+        rak1.containsKey(namaBarang) || rak2.containsKey(namaBarang);
     if (!cekBarang) {
+      print("---");
       print("Pesan Error : Nama Barang Tidak Ditemukan!");
+      print("---");
       return false;
     }
 
@@ -29,20 +32,28 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
 
     if (rak1.containsKey(namaBarang)) {
       if (rak1[namaBarang]!.length() < jumlahPembelian) {
+        print("---");
         print("Pesan Error: Stok Barang Tidak Cukup!");
+        print("---");
         return false;
       } else if (jumlahPembelian > rak1[namaBarang]!.length()) {
+        print("---");
         print("Pesan Error: Stok Barang Tidak Cukup!");
+        print("---");
         return false;
       }
     }
 
     if (rak2.containsKey(namaBarang)) {
       if (rak2[namaBarang]!.length() < jumlahPembelian) {
+        print("---");
         print("Pesan Error: Stok Barang Tidak Cukup!");
+        print("---");
         return false;
       } else if (jumlahPembelian > rak2[namaBarang]!.length()) {
+        print("---");
         print("Pesan Error: Stok Barang Tidak Cukup!");
+        print("---");
         return false;
       }
     }
@@ -58,15 +69,21 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       totalHargaBarang = rak2[namaBarang]!.totalHargaBarang(jumlahPembelian)!;
       print("Harga = $totalHargaBarang");
     } else {
+      print("---");
       print("Nama barang tidak ada di rak manapun!");
+      print("---");
       return false;
     }
     if (totalHargaBarang == null) {
+      print("---");
       print("Total harga tidak valid");
+      print("---");
       return false;
     }
     if (totalHargaBarang == 0) {
+      print("---");
       print("Barang sudah tidak ada!");
+      print("---");
       return false;
     }
 
@@ -80,7 +97,9 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     if (rak1.containsKey(namaBarang)) {
       stok = rak1[namaBarang]!.length();
       if (stok < jumlahPembelian) {
+        print("---");
         print("Stok tidak cukup untuk melanjutkan pembelian!");
+        print("---");
         return false;
       }
       if (nominal >= totalHargaBarang) {
@@ -96,12 +115,16 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
         kembalian = nominal - totalHargaBarang;
         print("Proses pembelian selesai, kembalian = RP$kembalian");
       } else {
+        print("---");
         print("Uang tidak cukup!");
+        print("---");
       }
     } else if (rak2.containsKey(namaBarang)) {
       stok = rak2[namaBarang]!.length();
       if (stok < jumlahPembelian) {
+        print("---");
         print("Stok tidak cukup untuk melanjutkan pembelian!");
+        print("---");
         return false;
       }
       if (nominal >= totalHargaBarang) {
@@ -117,14 +140,15 @@ bool jualBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
         kembalian = nominal - totalHargaBarang;
         print("Proses pembelian selesai, kembalian = RP$kembalian");
       } else {
+        print("---");
         print("Uang tidak cukup!");
+        print("---");
       }
     }
 
     return true;
-  } catch (e, stackTrace) {
+  } catch (e) {
     print("Terjadi kesalahan: ${e.toString()}");
-    print("StackTrace:\n$stackTrace");
     return false;
   }
 }

@@ -18,6 +18,9 @@ void editBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     return;
   }
 
+  NodeBarang? cari = gudang.cariBarang(kodeBarang); // NodeBarang
+  String tanggalKadaluarsa = "0";
+
   stdout.write("Apakah benar mau mengedit barang ini? (Y/N) ");
   String yakin = stdin.readLineSync()!;
 
@@ -35,11 +38,12 @@ void editBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
     double hargaBeli = double.parse(stdin.readLineSync()!);
     stdout.write("Masukkan Harga Jual Barang = ");
     double hargaJual = double.parse(stdin.readLineSync()!);
-    stdout.write(
-        "Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
-    String tanggalKadaluarsa = stdin.readLineSync()!;
+    if (cari?.data is BarangMudahKadaluarsa) {
+      stdout.write(
+          "Masukkan Tanggal Kadaluarsa Barang (Jika ada, Jika Tidak Berikan 0) = ");
+      tanggalKadaluarsa = stdin.readLineSync()!;
+    } 
 
-    NodeBarang? cari = gudang.cariBarang(kodeBarang); // NodeBarang
     Barang editBarang = cari!.data;
     String? namaBarangLama = editBarang.namaBarang;
 
@@ -58,7 +62,7 @@ void editBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
         }
       } else if (editBarang is BarangTidakKadaluarsa) {
         rak1[namaBarangLama]?.deleteMiddle(namaBarangLama!);
-         if (rak1[namaBarangLama]!.isEmpty()) {
+        if (rak1[namaBarangLama]!.isEmpty()) {
           rak1.remove(namaBarangLama);
         }
         if (rak1.containsKey(namaBarang) == true) {
@@ -90,9 +94,13 @@ void editBarang(DoubleLinkedListBarang gudang, Map<String, Stack> rak1,
       });
       print("---");
     } else {
-      print("Proses edit barang gagal!");
+      print("---");
+      print("Pesan Error : Proses edit barang gagal!");
+      print("---");
     }
   } else {
-    print("Proses edit barang dibatalkan!");
+    print("---");
+    print("Pesan Error : Proses edit barang dibatalkan!");
+    print("---");
   }
 }
