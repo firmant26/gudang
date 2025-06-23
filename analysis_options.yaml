@@ -18,6 +18,7 @@ analyzer:
     unnecessary_null_comparison: ignore
     file_names: ignore
     unused_import: ignore
+    non_constant_identifier_names: ignore
 
 # Uncomment the following section to specify additional rules.
 
